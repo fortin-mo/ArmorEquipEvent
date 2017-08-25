@@ -6,6 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Contract;
 
 /**
  * @Author Borlea
@@ -42,7 +43,8 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable{
 	 *
 	 * @return A list of handlers handling this event.
 	 */
-	public final static HandlerList getHandlerList(){
+	@Contract(pure = true)
+    public final static HandlerList getHandlerList(){
 		return handlers;
 	}
 
@@ -51,7 +53,8 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable{
 	 *
 	 * @return A list of handlers handling this event.
 	 */
-	@Override
+	@Contract(pure = true)
+    @Override
 	public final HandlerList getHandlers(){
 		return handlers;
 	}
@@ -70,18 +73,21 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable{
 	 *
 	 * @return If this event is cancelled
 	 */
-	public final boolean isCancelled(){
+	@Contract(pure = true)
+    public final boolean isCancelled(){
 		return cancel;
 	}
 
-	public final ArmorType getType(){
+	@Contract(pure = true)
+    public final ArmorType getType(){
 		return type;
 	}
 
 	/**
 	 * Returns the last equipped armor piece, could be a piece of armor, Air, or null.
 	 */
-	public final ItemStack getOldArmorPiece(){
+	@Contract(pure = true)
+    public final ItemStack getOldArmorPiece(){
 		return oldArmorPiece;
 	}
 
@@ -92,7 +98,8 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable{
 	/**
 	 * Returns the newly equipped armor, could be a piece of armor, MaterialAir, or null.
 	 */
-	public final ItemStack getNewArmorPiece(){
+	@Contract(pure = true)
+    public final ItemStack getNewArmorPiece(){
 		return newArmorPiece;
 	}
 
@@ -103,7 +110,8 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable{
 	/**
 	 * Gets the method used to either equip or unequip an armor piece.
 	 */
-	public EquipMethod getMethod(){
+	@Contract(pure = true)
+    public EquipMethod getMethod(){
 		return equipType;
 	}
 
