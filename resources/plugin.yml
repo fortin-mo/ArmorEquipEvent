@@ -1,4 +1,4 @@
-name: ArmorEquipEvent
-main: com.codingforcookies.armorequip.Main
+name: LowbrainArmorEquip
+main: lowbrain.armorequip.Main
 version: 1.7
 author: [CodingForCookies]

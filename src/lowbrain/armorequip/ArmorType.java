@@ -1,4 +1,4 @@
-package com.codingforcookies.armorequip;
+package lowbrain.armorequip;
 
 import org.bukkit.inventory.ItemStack;
 
@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
  * @Since Jul 30, 2015 6:46:16 PM
  */
 public enum ArmorType{
-	HELMET(5), CHESTPLATE(6), LEGGINGS(7), BOOTS(8), SHIELD(45);
+	HELMET(5), CHESTPLATE(6), LEGGINGS(7), BOOTS(8), SHIELD(45), OFF_HAND(45);
 
 	private final int slot;
 
@@ -24,7 +24,9 @@ public enum ArmorType{
 	 * @return The parsed ArmorType. (null if none were found.)
 	 */
 	public final static ArmorType matchType(final ItemStack itemStack){
-		if(itemStack == null) { return null; }
+		if(itemStack == null)
+		    return null;
+
 		switch (itemStack.getType()){
 			case DIAMOND_HELMET:
 			case GOLD_HELMET:
@@ -52,8 +54,10 @@ public enum ArmorType{
 				return BOOTS;
 			case SHIELD:
 				return SHIELD;
+            case AIR:
+                return null;
 			default:
-				return null;
+				return OFF_HAND;
 		}
 	}
 

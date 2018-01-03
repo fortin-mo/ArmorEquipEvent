@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_armorequipevent" default="compile.module.armorequipevent">
+  <dirname property="module.armorequipevent.basedir" file="${ant.file.module_armorequipevent}"/>
+  
+  <property name="module.jdk.home.armorequipevent" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.armorequipevent" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.armorequipevent" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.armorequipevent" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="armorequipevent.output.dir" value="${module.armorequipevent.basedir}/../LowbrainPackage/out/production/ArmorEquipEvent"/>
+  <property name="armorequipevent.testoutput.dir" value="${module.armorequipevent.basedir}/../LowbrainPackage/out/test/ArmorEquipEvent"/>
+  
+  <path id="armorequipevent.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="armorequipevent.module.production.classpath">
+    <path refid="${module.jdk.classpath.armorequipevent}"/>
+    <path refid="library.spigot-1.12.classpath"/>
+  </path>
+  
+  <path id="armorequipevent.runtime.production.module.classpath">
+    <pathelement location="${armorequipevent.output.dir}"/>
+    <path refid="library.spigot-1.12.classpath"/>
+  </path>
+  
+  <path id="armorequipevent.module.classpath">
+    <path refid="${module.jdk.classpath.armorequipevent}"/>
+    <pathelement location="${armorequipevent.output.dir}"/>
+    <path refid="library.spigot-1.12.classpath"/>
+  </path>
+  
+  <path id="armorequipevent.runtime.module.classpath">
+    <pathelement location="${armorequipevent.testoutput.dir}"/>
+    <pathelement location="${armorequipevent.output.dir}"/>
+    <path refid="library.spigot-1.12.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.armorequipevent">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.armorequipevent">
+    <patternset refid="excluded.from.module.armorequipevent"/>
+  </patternset>
+  
+  <path id="armorequipevent.module.sourcepath">
+    <dirset dir="${module.armorequipevent.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.armorequipevent" depends="compile.module.armorequipevent.production,compile.module.armorequipevent.tests" description="Compile module ArmorEquipEvent"/>
+  
+  <target name="compile.module.armorequipevent.production" depends="register.custom.compilers" description="Compile module ArmorEquipEvent; production classes">
+    <mkdir dir="${armorequipevent.output.dir}"/>
+    <javac2 destdir="${armorequipevent.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.armorequipevent}/javac">
+      <compilerarg line="${compiler.args.armorequipevent}"/>
+      <bootclasspath refid="armorequipevent.module.bootclasspath"/>
+      <classpath refid="armorequipevent.module.production.classpath"/>
+      <src refid="armorequipevent.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.armorequipevent"/>
+    </javac2>
+    
+    <copy todir="${armorequipevent.output.dir}">
+      <fileset dir="${module.armorequipevent.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.armorequipevent.tests" depends="register.custom.compilers,compile.module.armorequipevent.production" description="compile module ArmorEquipEvent; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.armorequipevent" description="cleanup module">
+    <delete dir="${armorequipevent.output.dir}"/>
+    <delete dir="${armorequipevent.testoutput.dir}"/>
+  </target>
+</project>

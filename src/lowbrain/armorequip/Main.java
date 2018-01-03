@@ -1,4 +1,4 @@
-package com.codingforcookies.armorequip;
+package lowbrain.armorequip;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

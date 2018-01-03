@@ -1,6 +1,5 @@
-package com.codingforcookies.armorequip;
+package lowbrain.armorequip;
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
@@ -115,7 +114,7 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable{
 		return equipType;
 	}
 
-	public enum EquipMethod{
+	public enum EquipMethod {
 	    /**
 	     * When you shift click an armor piece to equip or unequip
 	     */
