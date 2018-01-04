@@ -1,5 +1,6 @@
 package lowbrain.armorequip;
 
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
@@ -145,4 +146,32 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable{
 		DEATH,
 		;
 	}
+
+	public static ItemStack getFromPlayer(ArmorType type, HumanEntity who) {
+	    if (type == null || who == null)
+	        return null;
+
+        ItemStack item = null;
+
+        switch (type) {
+            case HELMET:
+                item = who.getInventory().getHelmet();
+                break;
+            case CHESTPLATE:
+                item = who.getInventory().getChestplate();
+                break;
+            case LEGGINGS:
+                item = who.getInventory().getLeggings();
+                break;
+            case BOOTS:
+                item = who.getInventory().getBoots();
+                break;
+            case SHIELD:
+            case OFF_HAND:
+                item = who.getInventory().getItemInOffHand();
+                break;
+        }
+
+        return item;
+    }
 }
